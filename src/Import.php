@@ -8,7 +8,10 @@ class Import {
     }
 
     public static function option(string $package, string $option) : string {
-        $path = dirname(dirname(__FILE__));
+        $path = __DIR__;
+        while(!is_dir($path."/vendor")) {
+            $path = dirname($path,1);
+        }
 
         $packages = require($path."/vendor/composer/autoload_psr4.php");
 
